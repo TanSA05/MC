@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nextText"
         android:textSize="28sp"
-        android:layout_gravity="bottom|center_horizontal|right" />
+        android:layout_gravity="bottom|center_horizontal|right"
+        android:drawableRight="@drawable/arrow_right" />
 
 </LinearLayout>
