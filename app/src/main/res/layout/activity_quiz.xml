@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="in.ac.iiitd.psingh.mc16.objectivequiz.QuizActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/heading"
+        android:elevation="4dp"
+        android:background="@drawable/myrect"
+        android:text="@string/heading"
+        android:textSize="32sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/info_text"
+        android:textSize="26sp"
+        android:layout_column="20"
+        android:paddingBottom="30sp"
+        android:textAlignment="center"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:elevation="4dp"
+        android:background="@drawable/myrect1"
+        android:textSize="32sp"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:theme="@style/AppTheme.TrueButton"
+            android:id="@+id/TrueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trueText"
+            android:textSize="28sp" />
+        <TextView
+            android:id="@+id/or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/or"
+            android:textSize="28sp"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_column="20"
+            android:textStyle="bold" />
+
+        <Button
+            android:theme="@style/AppTheme.FalseButton"
+            android:id="@+id/FalseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/falseText"
+            android:textSize="28sp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <Button
+        android:theme="@style/AppTheme.NextButton"
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nextText"
+        android:textSize="28sp"
+        android:layout_gravity="bottom|center_horizontal|right" />
+
+</LinearLayout>
