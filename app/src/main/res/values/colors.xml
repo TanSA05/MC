@@ -7,4 +7,5 @@
     <color name="colorButtonRed">#FF0000</color>
     <color name="colorButtonBlue">#0000FF</color>
     <color name="colorTextNormal">#FFFFFF</color>
+    <color name="colorBackground">#FDFAF5</color>
 </resources>
