@@ -99,7 +99,7 @@ public class QuizActivity extends AppCompatActivity {
         });
         mNextButton = (Button) findViewById(R.id.next_button);
         android.widget.LinearLayout.LayoutParams nextparams = (android.widget.LinearLayout.LayoutParams)mNextButton.getLayoutParams();
-        nextparams.setMargins(0, 50, 100, 0); //substitute parameters for left, top, right, bottom
+        nextparams.setMargins(0, 50, 50, 0); //substitute parameters for left, top, right, bottom
         mNextButton.setLayoutParams(nextparams);
         mNextButton.setOnClickListener(new View.OnClickListener(){
             @Override
