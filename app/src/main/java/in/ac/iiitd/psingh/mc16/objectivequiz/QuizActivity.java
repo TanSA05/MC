@@ -1,5 +1,6 @@
 package in.ac.iiitd.psingh.mc16.objectivequiz;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mCheatButton;
+    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     Random rn = new Random();
 
@@ -37,6 +40,7 @@ public class QuizActivity extends AppCompatActivity {
         return flag;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,10 @@ public class QuizActivity extends AppCompatActivity {
         params.setMargins(0, 0, 0, 30); //substitute parameters for left, top, right, bottom
         mNumberBox.setLayoutParams(params);
 
+        int ans = rn.nextInt(1000) + 1;
+        String answer = String.valueOf(ans);
+        mNumberBox.setText(answer);
+
         mTrueButton = (Button) findViewById(R.id.TrueButton);
         android.widget.LinearLayout.LayoutParams trueparams = (android.widget.LinearLayout.LayoutParams)mTrueButton.getLayoutParams();
         trueparams.setMargins(0, 0, 50, 20); //substitute parameters for left, top, right, bottom
@@ -57,9 +65,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Log.d(TAG, "Clicked True");
-                int ans = rn.nextInt(1000) + 1;
-                String answer = String.valueOf(ans);
-                Log.d(TAG,answer);
+                /*int ans = rn.nextInt(1000) + 1;
+                String answer = String.valueOf(ans);*/
+                String ans_string = mNumberBox.getText().toString();
+                int ans = Integer.parseInt(ans_string);
                 int c = checkPrime(ans);
                 if (c == 0) {
                     Log.d(TAG,"It is prime. You are correct");
@@ -69,7 +78,7 @@ public class QuizActivity extends AppCompatActivity {
                     Log.d(TAG,"It is not prime. You are incorrect");
                     Toast.makeText(getApplicationContext(), "It is not prime. You are incorrect", Toast.LENGTH_SHORT).show();
                 }
-                mNumberBox.setText(answer);
+                //mNumberBox.setText(answer);
             }
         });
 
@@ -81,9 +90,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Log.d(TAG, "Clicked False");
-                int ans = rn.nextInt(1000) + 1;
-                String answer = String.valueOf(ans);
-                Log.d(TAG,answer);
+            /*int ans = rn.nextInt(1000) + 1;
+            String answer = String.valueOf(ans);*/
+                String ans_string = mNumberBox.getText().toString();
+                int ans = Integer.parseInt(ans_string);
                 int c = checkPrime(ans);
                 if (c == 0) {
                     Log.d(TAG,"It is prime. You are incorrect");
@@ -93,7 +103,7 @@ public class QuizActivity extends AppCompatActivity {
                     Log.d(TAG,"It is not prime. You are correct");
                     Toast.makeText(getApplicationContext(), "It is not prime. You are correct", Toast.LENGTH_SHORT).show();
                 }
-                mNumberBox.setText(answer);
+                //mNumberBox.setText(answer);
 
             }
         });
@@ -111,6 +121,32 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        //android.widget.LinearLayout.LayoutParams nextparams = (android.widget.LinearLayout.LayoutParams)mCheatButton.getLayoutParams();
+        //nextparams.setMargins(0, 50, 50, 0); //substitute parameters for left, top, right, bottom
+        //mNextButton.setLayoutParams(nextparams);
+
+    }
+
+    public void sendCheat(View view) {
+        // Do something in response to button
+        Log.d(TAG,"You're in sendCheat");
+        Intent intent = new Intent(this, DisplayCheatActivity.class);
+        //intent.SetFlags(ActivityFlags.ClearTop);
+        //TextView string = (TextView) findViewById(R.id.heading);
+        //String message = string.getText().toString();
+        String ans_string = mNumberBox.getText().toString();
+        Log.d(TAG,ans_string);
+        int ans = Integer.parseInt(ans_string);
+        int c = checkPrime(ans);
+        if (c == 0){
+            intent.putExtra(EXTRA_MESSAGE, "Click on True!");
+        }
+        else{
+            intent.putExtra(EXTRA_MESSAGE, "Click on False!");
+        }
+        startActivity(intent);
+
     }
 
     @Override
@@ -124,9 +160,6 @@ public class QuizActivity extends AppCompatActivity {
     {
         super.onStart();
         Log.d(TAG, "Inside OnStart");
-        int ans = rn.nextInt(1000) + 1;
-        String answer = String.valueOf(ans);
-        mNumberBox.setText(answer);
     }
 
     @Override
