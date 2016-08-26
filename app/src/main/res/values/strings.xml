@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">PrimeOrNot</string>
     <string name="heading">Do You Know Your Primes?</string>
+    <string name="cheatHeading">Answer</string>
+    <string name="hintHeading">Hint</string>
     <string name="or">"OR"</string>
     <string name="info_text_land">"Is the number below prime?"</string>
-    <string name="info_text">"If the number shown is prime, click on "True", otherwise, click on "False". You can also click on "Next""</string>
+    <string name="info_text">"If the number shown is prime, click on "True", otherwise, click on "False". Click Next for next number"</string>
     <string name="trueText">True?</string>
     <string name="falseText">False?</string>
     <string name="nextText">Next</string>
     <string name="cheatText">Cheat</string>
+    <string name="hintText">Hint</string>
 </resources>

@@ -20,7 +20,9 @@ public class QuizActivity extends AppCompatActivity {
     private Button mFalseButton;
     private Button mNextButton;
     private Button mCheatButton;
+    private Button mHintButton;
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public final static String EXTRA_MESSAGE1 = "com.example.myfirstapp.MESSAGE1";
 
     Random rn = new Random();
 
@@ -65,8 +67,6 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Log.d(TAG, "Clicked True");
-                /*int ans = rn.nextInt(1000) + 1;
-                String answer = String.valueOf(ans);*/
                 String ans_string = mNumberBox.getText().toString();
                 int ans = Integer.parseInt(ans_string);
                 int c = checkPrime(ans);
@@ -78,7 +78,6 @@ public class QuizActivity extends AppCompatActivity {
                     Log.d(TAG,"It is not prime. You are incorrect");
                     Toast.makeText(getApplicationContext(), "It is not prime. You are incorrect", Toast.LENGTH_SHORT).show();
                 }
-                //mNumberBox.setText(answer);
             }
         });
 
@@ -90,8 +89,6 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Log.d(TAG, "Clicked False");
-            /*int ans = rn.nextInt(1000) + 1;
-            String answer = String.valueOf(ans);*/
                 String ans_string = mNumberBox.getText().toString();
                 int ans = Integer.parseInt(ans_string);
                 int c = checkPrime(ans);
@@ -103,7 +100,6 @@ public class QuizActivity extends AppCompatActivity {
                     Log.d(TAG,"It is not prime. You are correct");
                     Toast.makeText(getApplicationContext(), "It is not prime. You are correct", Toast.LENGTH_SHORT).show();
                 }
-                //mNumberBox.setText(answer);
 
             }
         });
@@ -114,7 +110,7 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Log.d(TAG, "Clicked True");
+                Log.d(TAG, "Clicked Next");
                 int ans = rn.nextInt(1000) + 1;
                 String answer = String.valueOf(ans);
                 mNumberBox.setText(answer);
@@ -122,30 +118,43 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         mCheatButton = (Button) findViewById(R.id.cheat_button);
-        //android.widget.LinearLayout.LayoutParams nextparams = (android.widget.LinearLayout.LayoutParams)mCheatButton.getLayoutParams();
-        //nextparams.setMargins(0, 50, 50, 0); //substitute parameters for left, top, right, bottom
-        //mNextButton.setLayoutParams(nextparams);
+        mHintButton = (Button) findViewById(R.id.hint_button);
 
     }
 
     public void sendCheat(View view) {
         // Do something in response to button
         Log.d(TAG,"You're in sendCheat");
+        Toast.makeText(getApplicationContext(), "Cheat now, but don't regret it later.", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DisplayCheatActivity.class);
-        //intent.SetFlags(ActivityFlags.ClearTop);
-        //TextView string = (TextView) findViewById(R.id.heading);
-        //String message = string.getText().toString();
         String ans_string = mNumberBox.getText().toString();
-        Log.d(TAG,ans_string);
         int ans = Integer.parseInt(ans_string);
         int c = checkPrime(ans);
         if (c == 0){
-            intent.putExtra(EXTRA_MESSAGE, "Click on True!");
+            intent.putExtra(EXTRA_MESSAGE, "This is a prime number. Click on True to get the correct answer!");
         }
         else{
-            intent.putExtra(EXTRA_MESSAGE, "Click on False!");
+            intent.putExtra(EXTRA_MESSAGE, "This is not a prime number. Click on False to get the correct answer!");
         }
         startActivity(intent);
+
+    }
+
+    public void sendHint(View view) {
+        // Do something in response to button
+        Log.d(TAG,"You're in sendHint");
+        Toast.makeText(getApplicationContext(), "You should be able to guess the answer now!", Toast.LENGTH_SHORT).show();
+        Intent intent1 = new Intent(this, DisplayHintActivity.class);
+        String ans_string = mNumberBox.getText().toString();
+        int ans = Integer.parseInt(ans_string);
+        int c = checkPrime(ans);
+        if (c == 0){
+            intent1.putExtra(EXTRA_MESSAGE1, "This number is not divisible by any number");
+        }
+        else{
+            intent1.putExtra(EXTRA_MESSAGE1, "This number is divisible by one or more numbers");
+        }
+        startActivity(intent1);
 
     }
 
