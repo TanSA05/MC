@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -19,11 +20,12 @@ public class DisplayCheatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(QuizActivity.EXTRA_MESSAGE);
         TextView textView = (TextView) findViewById(R.id.textView);
-        //textView.setTextSize(28);
         textView.setText(message);
-        Log.d(TAG,"You're in the second activity");
-
-        /*ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_cheat);
-        layout.addView(textView);*/
     }
+
+    public void backPress(View view) {
+        finish();
+    }
+
+
 }

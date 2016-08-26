@@ -23,4 +23,9 @@
         <item name="android:textColor">@color/colorTextNormal</item>
     </style>
 
+    <style name="AppTheme.BackButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorBlack</item>
+        <item name="android:textColor">@color/colorTextNormal</item>
+    </style>
+
 </resources>
