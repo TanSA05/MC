@@ -71,8 +71,22 @@ public class QuizActivity extends AppCompatActivity {
                 int ans = Integer.parseInt(ans_string);
                 int c = checkPrime(ans);
                 if (c == 0) {
-                    Log.d(TAG,"It is prime. You are correct");
-                    Toast.makeText(getApplicationContext(), "It is prime. You are correct", Toast.LENGTH_SHORT).show();
+                    if (mCheatButton.isEnabled() && mHintButton.isEnabled()) {
+                        Log.d(TAG, "It is prime. You are correct");
+                        Toast.makeText(getApplicationContext(), "It is prime. You are correct without help!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (!mCheatButton.isEnabled() && mHintButton.isEnabled()) {
+                        Log.d(TAG, "It is prime. You are correct with cheat!");
+                        Toast.makeText(getApplicationContext(), "It is prime. You are correct with cheat!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (!mHintButton.isEnabled() && mCheatButton.isEnabled()) {
+                        Log.d(TAG, "It is prime. You are correct with hint!");
+                        Toast.makeText(getApplicationContext(), "It is prime. You are correct with hint!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (!mHintButton.isEnabled() && !mCheatButton.isEnabled()) {
+                        Log.d(TAG, "It is prime. You are correct with both hint and cheat");
+                        Toast.makeText(getApplicationContext(), "It is prime. You are correct with hint and cheat!", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     Log.d(TAG,"It is not prime. You are incorrect");
@@ -93,12 +107,28 @@ public class QuizActivity extends AppCompatActivity {
                 int ans = Integer.parseInt(ans_string);
                 int c = checkPrime(ans);
                 if (c == 0) {
-                    Log.d(TAG,"It is prime. You are incorrect");
-                    Toast.makeText(getApplicationContext(), "It is prime. You are incorrect", Toast.LENGTH_SHORT).show();
+                    if(mCheatButton.isEnabled() && mHintButton.isEnabled()) {
+                        Log.d(TAG, "It is prime. You are incorrect");
+                        Toast.makeText(getApplicationContext(), "It is prime. You are incorrect", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
-                    Log.d(TAG,"It is not prime. You are correct");
-                    Toast.makeText(getApplicationContext(), "It is not prime. You are correct", Toast.LENGTH_SHORT).show();
+                    if(mCheatButton.isEnabled() && mHintButton.isEnabled()) {
+                        Log.d(TAG, "It is not prime. You are correct without any help!");
+                        Toast.makeText(getApplicationContext(), "It is not prime. You are correct without help!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(!mCheatButton.isEnabled() && mHintButton.isEnabled()) {
+                        Log.d(TAG, "It is not prime. You are correct with cheat!");
+                        Toast.makeText(getApplicationContext(), "It is not prime. You are correct with cheat!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(!mHintButton.isEnabled() && mCheatButton.isEnabled()) {
+                        Log.d(TAG, "It is not prime. You are correct with hint!");
+                        Toast.makeText(getApplicationContext(), "It is not prime. You are correct with hint!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Log.d(TAG, "It is not prime. You are correct with both cheat and hint!");
+                        Toast.makeText(getApplicationContext(), "It is not prime. You are correct with hint and cheat!", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
@@ -114,6 +144,8 @@ public class QuizActivity extends AppCompatActivity {
                 int ans = rn.nextInt(1000) + 1;
                 String answer = String.valueOf(ans);
                 mNumberBox.setText(answer);
+                mCheatButton.setEnabled(true);
+                mHintButton.setEnabled(true);
             }
         });
 
@@ -137,6 +169,7 @@ public class QuizActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_MESSAGE, "This is not a prime number. Click on False to get the correct answer!");
         }
         startActivity(intent);
+        mCheatButton.setEnabled(false);
 
     }
 
@@ -155,7 +188,7 @@ public class QuizActivity extends AppCompatActivity {
             intent1.putExtra(EXTRA_MESSAGE1, "This number is divisible by one or more numbers");
         }
         startActivity(intent1);
-
+        mHintButton.setEnabled(false);
     }
 
     @Override
